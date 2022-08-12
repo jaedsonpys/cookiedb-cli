@@ -17,11 +17,11 @@ class CookieDBCLI(object):
         self._cookiedb: cookiedb.CookieDB = None
 
     def get_databases(self) -> list:
-        if not os.path.isdir(self._database_dir_path):
+        if not os.path.isdir(self._databases_dir_path):
             os.mkdir(self._databases_dir_path)
             databases = []
         else:
-            listdir = os.listdir(self._database_dir_path)
+            listdir = os.listdir(self._databases_dir_path)
             databases = [db for db in listdir if db.endswith('.cookiedb')]
 
         return databases
@@ -33,7 +33,7 @@ class CookieDBCLI(object):
             raise FileNotFoundError(f'Directory "{path}" not found')
 
     def configure(self, password: str) -> bytes:
-        if not os.path.isdir(self._database_dir_path):
+        if not os.path.isdir(self._databases_dir_path):
             os.mkdir(self._databases_dir_path)
 
         password_file = os.path.join(self._databases_dir_path, '.user')
