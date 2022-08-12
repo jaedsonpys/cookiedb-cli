@@ -2,7 +2,7 @@ import base64
 import hashlib
 import os
 import pathlib
-from ctypes import Union
+from typing import Union
 
 import cookiedb
 
