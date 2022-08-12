@@ -8,6 +8,12 @@ Install `cookiedb-cli` using pip:
 pip install cookiedb-cli
 ```
 
+## Using CookieDB-CLI
+
+To use the `CLI` version, you need to know the [CookieDB library](https://github.com/jaedsonpys/cookiedb). After that, just use the same methods.
+
+A password will always be **required to access** the available databases.
+
 ## License
 
 ```
