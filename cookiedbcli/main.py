@@ -37,3 +37,16 @@ def main():
                 break
 
         dbcli.configure(password)
+
+    print('Welcome to CookieDB CLI!')
+    print('See the complete CookieDB documentation at https://github.com/jaedsonpys/cookiedb')
+    print(f'\n* CookieDB CLI version: {__version__}')
+    print(f'* CookieDB version: {cookiedb.__version__}\n')
+
+    while True:
+        open_db = dbcli.execute('db.checkout()')
+        command = input(f'cookiedb ({open_db}) > ')
+        result = dbcli.execute(command)
+        
+        if result:
+            pprint(result, indent=4)
