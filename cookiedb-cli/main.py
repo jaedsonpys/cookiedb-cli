@@ -14,6 +14,8 @@ class CookieDBCLI(object):
         self._home_user = pathlib.Path.home()
         self._databases_dir_path = os.path.join(self._home_user, '.cookiedb')
 
+        self._cookiedb: cookiedb.CookieDB = None
+
     def get_database(self) -> list:
         if not os.path.isdir(self._database_dir_path):
             os.mkdir(self._databases_dir_path)
@@ -32,5 +34,10 @@ class CookieDBCLI(object):
 
         with open(password_file, 'wb') as writer:
             writer.write(b64_hash)
+
+        self._cookiedb = cookiedb.CookieDB(
+            key=b64_hash,
+            database_local=self._databases_dir_path
+        )
 
         return b64_hash
