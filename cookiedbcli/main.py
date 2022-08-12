@@ -68,11 +68,16 @@ def main() -> int:
     while True:
         try:
             open_db = dbcli.execute('db.checkout()')
-            command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ')
+            command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ').strip()
 
-            if command.strip() == 'exit':
+            if command == 'exit':
                 print('\nBye.')
                 return 0
+            elif command == 'list':
+                for i in dbcli.get_databases():
+                    print(f'\033[1;32m{i.replace(".cookiedb", "")}\033[m')
+
+                continue
 
             try:
                 result = dbcli.execute(command)
