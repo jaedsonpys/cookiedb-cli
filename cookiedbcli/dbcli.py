@@ -33,20 +33,8 @@ class CookieDBCLI(object):
             raise FileNotFoundError(f'Directory "{path}" not found')
 
     def configure(self, password: str) -> bytes:
-        if not os.path.isdir(self._databases_dir_path):
-            os.mkdir(self._databases_dir_path)
-
-        password_file = os.path.join(self._databases_dir_path, '.user')
-
-        if not os.path.isfile(password_file):
-            pw_hash = hashlib.md5(password.encode()).hexdigest()
-            b64_hash = base64.urlsafe_b64encode(pw_hash.encode())
-
-            with open(password_file, 'wb') as writer:
-                writer.write(b64_hash)
-        else:
-            with open(password_file, 'r') as reader:
-                b64_hash = reader.read()
+        pw_hash = hashlib.md5(password.encode()).hexdigest()
+        b64_hash = base64.urlsafe_b64encode(pw_hash.encode())
 
         self._cookiedb = cookiedb.CookieDB(
             key=b64_hash,
