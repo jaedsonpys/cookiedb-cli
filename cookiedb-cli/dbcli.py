@@ -1,7 +1,7 @@
 import base64
+from ctypes import Union
 import getpass
 import hashlib
-import json
 import os
 import pathlib
 import readline
@@ -77,3 +77,15 @@ class CookieDBCLI(object):
                         permitted = True
 
         return permitted
+
+    def execute(self, command: str) -> Union[None, str]:
+        command = command.strip()
+        db = self._cookiedb
+        result = None
+
+        if self._permitted_cmd(command):
+            exec(f'result = {command}')
+        else:
+            raise exceptions.InvalidCommandError(f'Command "{command}" unknown')
+
+        return result
