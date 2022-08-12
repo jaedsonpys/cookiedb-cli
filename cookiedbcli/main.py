@@ -6,6 +6,7 @@ import cookiedb
 
 from .__init__ import __version__
 from .dbcli import CookieDBCLI
+from .exceptions import InvalidCommandError
 
 
 def main():
@@ -50,7 +51,19 @@ def main():
     while True:
         open_db = dbcli.execute('db.checkout()')
         command = input(f'cookiedb ({open_db}) > ')
-        result = dbcli.execute(command)
-        
+
+        try:
+            result = dbcli.execute(command)
+        except InvalidCommandError:
+            result = '\033[31mUnknown CookieDB command.\033[m'
+        except cookiedb.exceptions.DatabaseExistsError:
+            result = '\033[31mThis database already exists\033[m'
+        except cookiedb.exceptions.DatabaseNotFoundError:
+            result = '\033[31mThis database was not found\033[m'
+        except cookiedb.exceptions.NoOpenDatabaseError:
+            result = '\033[31mNo open databases\033[m'
+        except cookiedb.exceptions.InvalidDatabaseKeyError:
+            result = '\033[31mInvalid key for accessing the database\033[m'
+
         if result:
             pprint(result, indent=4)
