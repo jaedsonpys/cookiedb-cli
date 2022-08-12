@@ -12,6 +12,11 @@ pip install cookiedb-cli
 
 To use the `CLI` version, you need to know the [CookieDB library](https://github.com/jaedsonpys/cookiedb). After that, just use the same methods.
 
+Some standard CLI commands are:
+
+- `exit`: Closes the command interface;
+- `list`: List all databases.
+
 A password will always be **required to access** the available databases.
 
 ## License
