@@ -43,14 +43,14 @@ def main():
         print('Bye.')
         exit(0)
 
-    print('Welcome to CookieDB CLI!')
+    print('\033[34mWelcome to CookieDB CLI!')
     print('See the complete CookieDB documentation at https://github.com/jaedsonpys/cookiedb')
     print(f'\n* CookieDB CLI version: {__version__}')
-    print(f'* CookieDB version: {cookiedb.__version__}\n')
+    print(f'* CookieDB version: {cookiedb.__version__}\033[m\n')
 
     while True:
         open_db = dbcli.execute('db.checkout()')
-        command = input(f'cookiedb ({open_db}) > ')
+        command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ')
 
         try:
             result = dbcli.execute(command)
