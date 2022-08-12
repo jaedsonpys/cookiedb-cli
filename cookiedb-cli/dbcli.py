@@ -1,12 +1,15 @@
-import os
-import getpass
-import readline
 import base64
+import getpass
 import hashlib
+import json
+import os
 import pathlib
+import readline
 
 import cookiedb
 from cryptography import fernet
+
+from . import exceptions
 
 
 class CookieDBCLI(object):
@@ -51,3 +54,26 @@ class CookieDBCLI(object):
         )
 
         return b64_hash
+
+    def _permitted_cmd(self, cmd_string: str) -> bool:
+        db_methods = [
+            'open', 'create_database', 'add',
+            'get', 'delete'
+        ]
+
+        permitted = False
+
+        if cmd_string.startswith('db.') and cmd_string[-1] == ')':
+            if ';' not in cmd_string and '#' not in cmd_string:
+                try:
+                    db, method = cmd_string.split('.', maxsplit=1)
+                except ValueError:
+                    pass
+                else:
+                    open_backets_index = method.index('(')
+                    method_name = method[0:open_backets_index]
+
+                    if method_name in db_methods:
+                        permitted = True
+
+        return permitted
