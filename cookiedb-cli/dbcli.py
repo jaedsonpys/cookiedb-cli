@@ -1,13 +1,10 @@
 import base64
-from ctypes import Union
-import getpass
 import hashlib
 import os
 import pathlib
-import readline
+from ctypes import Union
 
 import cookiedb
-from cryptography import fernet
 
 from . import exceptions
 
