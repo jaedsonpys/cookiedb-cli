@@ -49,25 +49,29 @@ def main():
     print(f'* CookieDB version: {cookiedb.__version__}\033[m\n')
 
     while True:
-        open_db = dbcli.execute('db.checkout()')
-        command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ')
-
         try:
-            result = dbcli.execute(command)
-        except InvalidCommandError:
-            result = '\033[31mUnknown CookieDB command.\033[m'
-        except cookiedb.exceptions.DatabaseExistsError:
-            result = '\033[31mThis database already exists\033[m'
-        except cookiedb.exceptions.DatabaseNotFoundError:
-            result = '\033[31mThis database was not found\033[m'
-        except cookiedb.exceptions.NoOpenDatabaseError:
-            result = '\033[31mNo open databases\033[m'
-        except cookiedb.exceptions.InvalidDatabaseKeyError:
-            result = '\033[31mInvalid key for accessing the database\033[m'
+            open_db = dbcli.execute('db.checkout()')
+            command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ')
 
-        if result and isinstance(result, (dict, list)):
-            print('\033[1;32m')
-            pprint(result)
-            print('\033[m')
-        elif result and isinstance(result, (str, int, float)):
-            print(f'\033[1;32m{result}\033[m')
+            try:
+                result = dbcli.execute(command)
+            except InvalidCommandError:
+                result = '\033[31mUnknown CookieDB command.\033[m'
+            except cookiedb.exceptions.DatabaseExistsError:
+                result = '\033[31mThis database already exists\033[m'
+            except cookiedb.exceptions.DatabaseNotFoundError:
+                result = '\033[31mThis database was not found\033[m'
+            except cookiedb.exceptions.NoOpenDatabaseError:
+                result = '\033[31mNo open databases\033[m'
+            except cookiedb.exceptions.InvalidDatabaseKeyError:
+                result = '\033[31mInvalid key for accessing the database\033[m'
+
+            if result and isinstance(result, (dict, list)):
+                print('\033[1;32m')
+                pprint(result)
+                print('\033[m')
+            elif result and isinstance(result, (str, int, float)):
+                print(f'\033[1;32m{result}\033[m')
+        except KeyboardInterrupt:
+            print('\nBye.')
+            return 0
