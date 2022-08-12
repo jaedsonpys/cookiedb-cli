@@ -56,6 +56,10 @@ class CookieDBCLI(object):
 
         self._cookiedb.add('/info', info)
 
+    def update_last_open(self) -> None:
+        open_at = datetime.now().strftime('%H:%M:%S')
+        self._cookiedb.add('/info/open_at', open_at)
+
     def _permitted_cmd(self, cmd_string: str) -> bool:
         db_methods = [
             'open', 'create_database', 'add',

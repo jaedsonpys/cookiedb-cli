@@ -42,6 +42,8 @@ def main() -> int:
         print('Bye.')
         return 0
 
+    dbcli.update_last_open()
+
     print('\033[34mWelcome to CookieDB CLI!')
     print('See the complete CookieDB documentation at https://github.com/jaedsonpys/cookiedb')
     print(f'\n* CookieDB CLI version: {__version__}')
