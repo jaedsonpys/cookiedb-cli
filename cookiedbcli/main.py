@@ -18,11 +18,9 @@ def main() -> int:
             while True:
                 password = getpass.getpass('Password: ')
                 dbcli.configure(password)
-
-                test_db = databases[0].replace('.cookiedb', '')
                 
                 try:
-                    dbcli.execute(f'db.open("{test_db}")')
+                    dbcli.execute(f'db.open("cookiedbcli-info")')
                 except cookiedb.exceptions.InvalidDatabaseKeyError:
                     print('\033[31mWrong password, try again\033[m')
                 else:
@@ -39,6 +37,7 @@ def main() -> int:
                     break
 
             dbcli.configure(password)
+            dbcli.create_info_database()
     except KeyboardInterrupt:
         print('Bye.')
         return 0

@@ -3,6 +3,7 @@ import hashlib
 import os
 import pathlib
 from typing import Union
+from datetime import datetime
 
 import cookiedb
 
@@ -40,6 +41,20 @@ class CookieDBCLI(object):
             key=b64_hash,
             database_local=self._databases_dir_path
         )
+
+    def create_info_database(self) -> None:
+        self._cookiedb.create_database('cookiedbcli-info')
+        self._cookiedb.open('cookiedbcli-info')
+
+        created_at = datetime.now().strftime('%H:%M:%S')
+
+        info = {
+            'created_at': created_at,
+            'update_at': created_at,
+            'last_database': 'cookiedbcli-info'
+        }
+
+        self._cookiedb.add('/info', info)
 
     def _permitted_cmd(self, cmd_string: str) -> bool:
         db_methods = [
