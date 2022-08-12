@@ -26,6 +26,12 @@ class CookieDBCLI(object):
 
         return databases
 
+    def set_database_dir(self, path: str) -> None:
+        if os.path.isdir(path):
+            self._databases_dir_path = path
+        else:
+            raise FileNotFoundError(f'Directory "{path}" not found')
+
     def configure(self, password: str) -> bytes:
         password_file = os.path.join(self._databases_dir_path, '.user')
 
