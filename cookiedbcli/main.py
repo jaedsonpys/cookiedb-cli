@@ -66,6 +66,8 @@ def main():
             result = '\033[31mInvalid key for accessing the database\033[m'
 
         if result and isinstance(result, (dict, list)):
+            print('\033[1;32m')
             pprint(result)
+            print('\033[m')
         elif result and isinstance(result, (str, int, float)):
-            print(result)
+            print(f'\033[1;32m{result}\033[m')
