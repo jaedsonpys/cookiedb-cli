@@ -53,6 +53,10 @@ def main() -> int:
             open_db = dbcli.execute('db.checkout()')
             command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ')
 
+            if command.strip() == 'exit':
+                print('\nBye.')
+                return 0
+
             try:
                 result = dbcli.execute(command)
             except InvalidCommandError:
