@@ -26,14 +26,18 @@ class CookieDBCLI(object):
 
         return databases
 
-    def initial_config(self, password: str) -> bytes:
-        pw_hash = hashlib.md5(password)
-        b64_hash = base64.urlsafe_b64encode(pw_hash)
-
+    def configure(self, password: str) -> bytes:
         password_file = os.path.join(self._databases_dir_path, '.user')
 
-        with open(password_file, 'wb') as writer:
-            writer.write(b64_hash)
+        if not os.path.isfile(password_file):
+            pw_hash = hashlib.md5(password)
+            b64_hash = base64.urlsafe_b64encode(pw_hash)
+
+            with open(password_file, 'wb') as writer:
+                writer.write(b64_hash)
+        else:
+            with open(password_file, 'r') as reader:
+                b64_hash = reader.read()
 
         self._cookiedb = cookiedb.CookieDB(
             key=b64_hash,
