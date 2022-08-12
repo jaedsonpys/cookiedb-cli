@@ -16,7 +16,7 @@ class CookieDBCLI(object):
 
         self._cookiedb: cookiedb.CookieDB = None
 
-    def get_database(self) -> list:
+    def get_databases(self) -> list:
         if not os.path.isdir(self._database_dir_path):
             os.mkdir(self._databases_dir_path)
             databases = []
