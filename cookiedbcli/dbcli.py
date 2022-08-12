@@ -50,7 +50,7 @@ class CookieDBCLI(object):
 
         info = {
             'created_at': created_at,
-            'update_at': created_at,
+            'open_at': created_at,
             'last_database': 'cookiedbcli-info'
         }
 
