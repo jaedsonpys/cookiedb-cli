@@ -23,3 +23,14 @@ class CookieDBCLI(object):
             databases = [db for db in listdir if db.endswith('.cookiedb')]
 
         return databases
+
+    def initial_config(self, password: str) -> bytes:
+        pw_hash = hashlib.md5(password)
+        b64_hash = base64.urlsafe_b64encode(pw_hash)
+
+        password_file = os.path.join(self._databases_dir_path, '.user')
+
+        with open(password_file, 'wb') as writer:
+            writer.write(b64_hash)
+
+        return b64_hash
