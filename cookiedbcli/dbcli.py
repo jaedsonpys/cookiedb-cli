@@ -39,8 +39,8 @@ class CookieDBCLI(object):
         password_file = os.path.join(self._databases_dir_path, '.user')
 
         if not os.path.isfile(password_file):
-            pw_hash = hashlib.md5(password)
-            b64_hash = base64.urlsafe_b64encode(pw_hash)
+            pw_hash = hashlib.md5(password.encode()).hexdigest()
+            b64_hash = base64.urlsafe_b64encode(pw_hash.encode())
 
             with open(password_file, 'wb') as writer:
                 writer.write(b64_hash)
