@@ -9,7 +9,7 @@ from .dbcli import CookieDBCLI
 from .exceptions import InvalidCommandError
 
 
-def main():
+def main() -> int:
     dbcli = CookieDBCLI()
     databases = dbcli.get_databases()
 
@@ -41,7 +41,7 @@ def main():
             dbcli.configure(password)
     except KeyboardInterrupt:
         print('Bye.')
-        exit(0)
+        return 0
 
     print('\033[34mWelcome to CookieDB CLI!')
     print('See the complete CookieDB documentation at https://github.com/jaedsonpys/cookiedb')
