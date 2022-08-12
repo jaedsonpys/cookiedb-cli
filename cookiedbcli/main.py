@@ -65,5 +65,7 @@ def main():
         except cookiedb.exceptions.InvalidDatabaseKeyError:
             result = '\033[31mInvalid key for accessing the database\033[m'
 
-        if result:
-            pprint(result, indent=4)
+        if result and isinstance(result, (dict, list)):
+            pprint(result)
+        elif result and isinstance(result, (str, int, float)):
+            print(result)
