@@ -33,6 +33,9 @@ class CookieDBCLI(object):
             raise FileNotFoundError(f'Directory "{path}" not found')
 
     def configure(self, password: str) -> bytes:
+        if not os.path.isdir(self._database_dir_path):
+            os.mkdir(self._databases_dir_path)
+
         password_file = os.path.join(self._databases_dir_path, '.user')
 
         if not os.path.isfile(password_file):
