@@ -56,7 +56,9 @@ def main() -> int:
             try:
                 result = dbcli.execute(command)
             except InvalidCommandError:
-                result = '\033[31mUnknown CookieDB command.\033[m'
+                result = '\033[33mUnknown CookieDB command.\033[m'
+            except NameError:
+                result = '\033[33mDo not try to run external code here!\033[m'
             except cookiedb.exceptions.DatabaseExistsError:
                 result = '\033[31mThis database already exists\033[m'
             except cookiedb.exceptions.DatabaseNotFoundError:
