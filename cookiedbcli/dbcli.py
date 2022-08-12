@@ -81,11 +81,10 @@ class CookieDBCLI(object):
     def execute(self, command: str) -> Union[None, str]:
         command = command.strip()
         db = self._cookiedb
-        result = None
 
         if self._permitted_cmd(command):
             exec(f'result = {command}')
         else:
             raise exceptions.InvalidCommandError(f'Command "{command}" unknown')
 
-        return result
+        return locals()['result']
