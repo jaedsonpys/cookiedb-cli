@@ -32,7 +32,7 @@ class CookieDBCLI(object):
         else:
             raise FileNotFoundError(f'Directory "{path}" not found')
 
-    def configure(self, password: str) -> bytes:
+    def configure(self, password: str) -> None:
         pw_hash = hashlib.md5(password.encode()).hexdigest()
         b64_hash = base64.urlsafe_b64encode(pw_hash.encode())
 
@@ -40,8 +40,6 @@ class CookieDBCLI(object):
             key=b64_hash,
             database_local=self._databases_dir_path
         )
-
-        return b64_hash
 
     def _permitted_cmd(self, cmd_string: str) -> bool:
         db_methods = [
