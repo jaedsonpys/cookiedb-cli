@@ -93,6 +93,8 @@ def main() -> int:
                 result = '\033[31mNo open databases\033[m'
             except cookiedb.exceptions.InvalidDatabaseKeyError:
                 result = '\033[31mInvalid key for accessing the database\033[m'
+            except cookiedb.exceptions.ItemNotExistsError:
+                result = '\033[31mNon-existent path\033[m'
 
             if result and isinstance(result, (dict, list)):
                 print('\033[1;32m')
