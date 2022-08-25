@@ -79,7 +79,7 @@ class CookieDBCLI(object):
     def _permitted_cmd(self, cmd_string: str) -> bool:
         db_methods = [
             'open', 'create_database', 'add',
-            'get', 'delete', 'checkout'
+            'get', 'delete', 'checkout', 'update'
         ]
 
         permitted = False
