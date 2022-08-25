@@ -68,7 +68,7 @@ def main() -> int:
     while True:
         try:
             open_db = dbcli.execute('db.checkout()')
-            command = input(f'\033[34mcookiedb\033[m (\033[1;32m{open_db}\033[m) > ').strip()
+            command = input(f'cookiedb ({open_db}) > ').strip()
 
             if command == 'exit':
                 print('\nBye.')
