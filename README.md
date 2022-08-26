@@ -15,7 +15,8 @@ To use the `CLI` version, you need to know the [CookieDB library](https://github
 Some standard CLI commands are:
 
 - `exit`: Closes the command interface;
-- `list`: List all databases.
+- `list`: List all databases;
+- `db`: The CookieDB class instance.
 
 A password will always be **required to access** the available databases.
 
