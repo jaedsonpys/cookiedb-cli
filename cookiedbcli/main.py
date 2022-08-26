@@ -59,6 +59,7 @@ def main() -> int:
         return 0
 
     dbcli.update_last_open()
+    dbcli.execute('db.close()')
 
     print('\033[34mWelcome to CookieDB CLI!')
     print('See the complete CookieDB documentation at https://github.com/jaedsonpys/cookiedb')
