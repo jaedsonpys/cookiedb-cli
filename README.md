@@ -27,4 +27,4 @@ GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 ```
 
-This code is licensed under GPL v3 license (see [LICENSE](https://github.com/jaedsonpys/cookiedb-cli/blob/master/LICENSE) for details)
+This code is licensed under GPL v3 license ([see LICENSE](https://github.com/jaedsonpys/cookiedb-cli/blob/master/LICENSE) for details)
