@@ -1,4 +1,4 @@
 cffi==1.15.1
-cookiedb==4.1.0
+cookiedb==4.2.0
 cryptography==37.0.4
 pycparser==2.21
