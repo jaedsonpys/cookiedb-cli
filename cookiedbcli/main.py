@@ -68,7 +68,7 @@ def main() -> int:
 
     while True:
         try:
-            open_db = dbcli.execute('db.checkout()')
+            open_db = dbcli.execute('db.checkout()') or 'no open database'
             command = input(f'cookiedb ({open_db}) > ').strip()
 
             if command == 'exit':
