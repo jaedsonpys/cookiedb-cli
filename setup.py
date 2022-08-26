@@ -15,7 +15,7 @@ setup(
     python_requires='>=3.6',
     license='GPL',
     packages=['cookiedbcli'],
-    install_requires=['cookiedb==4.1.0'],
+    install_requires=['cookiedb==4.2.0'],
     url='https://github.com/jaedsonpys/cookiedb-cli',
     project_urls={
         'Source code': 'https://github.com/jaedsonpys/cookiedb-cli',
